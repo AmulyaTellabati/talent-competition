@@ -1,0 +1,14 @@
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Services.Identity.deps.json
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Services.Identity.runtimeconfig.json
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Services.Identity.runtimeconfig.dev.json
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Services.Identity.dll
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Services.Identity.pdb
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Common.dll
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\bin\Release\netcoreapp2.0\Talent.Common.pdb
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.csprojAssemblyReference.cache
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.csproj.CoreCompileInputs.cache
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.AssemblyInfoInputs.cache
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.AssemblyInfo.cs
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.csproj.CopyComplete
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.dll
+C:\Users\Madhu Krishna\source\repos\talent-competition\Talent.Services.Identity\obj\Release\netcoreapp2.0\Talent.Services.Identity.pdb

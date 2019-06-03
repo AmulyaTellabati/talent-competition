@@ -177,20 +177,21 @@ namespace Talent.Services.Listing.Controllers
                     sortedJobs = sortedJobs.Where(x => x.Status != JobStatus.Active);
                 }
 
-                if(!showClosed)
+                if (!showClosed)
                 {
                     sortedJobs = sortedJobs.Where(x => x.Status != JobStatus.Closed);
                 }
+
 
                 if (!showExpired)
                 {
                     sortedJobs = sortedJobs.Where(x => x.ExpiryDate >= DateTime.UtcNow);
                 }
 
-                if (!showUnexpired)
-                {
-                    sortedJobs = sortedJobs.Where(x => x.ExpiryDate < DateTime.UtcNow);
-                }
+                //if (!showUnexpired)
+                //{
+                //    sortedJobs = sortedJobs.Where(x => x.ExpiryDate < DateTime.UtcNow);
+                //}
 
                 //TODO Draft not implemented yet
                 //if (!showDraft)
