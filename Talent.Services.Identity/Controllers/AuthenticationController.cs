@@ -33,6 +33,12 @@ namespace Talent.Services.Identity.Controllers
             _authenticationService = authenticationService;
             _userAppContext = userAppContext;
         }
+        [HttpGet("test")]
+        public IActionResult GetTest()
+        {
+            return Content("test");
+            //dummy page to test publish
+        }
 
         [HttpPost("signup")]
         public async Task<IActionResult> Signup([FromBody]CreateUser command)

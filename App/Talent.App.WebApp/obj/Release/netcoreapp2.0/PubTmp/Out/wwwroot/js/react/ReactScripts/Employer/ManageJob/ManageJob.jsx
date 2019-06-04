@@ -86,7 +86,7 @@ export default class ManageJob extends React.Component {
         ].join('&')
 
 
-        var link = 'http://localhost:51689/listing/listing/getSortedEmployerJobs?'+query;
+        var link = 'http://talentservicetalen.azurewebsites.net/listing/listing/getSortedEmployerJobs?'+query;
         var cookies = Cookies.get('talentAuthToken');
         // your ajax call and other logic goes here
 
@@ -204,7 +204,7 @@ export default class ManageJob extends React.Component {
     }
 
     closeJob() {
-        const link = 'http://localhost:51689/listing/listing/closeJob';
+        const link = 'http://talentservicetalen.azurewebsites.net/listing/listing/closeJob';
         const cookies = Cookies.get('talentAuthToken');
         const jobToClose = this.state.confirmClose.job;
 
