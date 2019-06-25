@@ -52,7 +52,7 @@ export default class EmployeeProfile extends React.Component {
     loadData() {
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
-            url: 'http://talentserviceprofile.azurewebsites.net/profile/profile/getEmployerProfile',
+            url: 'http://localhost:60290/profile/profile/getEmployerProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -114,7 +114,8 @@ export default class EmployeeProfile extends React.Component {
     };
 
     validateField(fieldName, value) {
-
+        //debugger
+        //console.log("validateField!")
         let fieldValidationErrors = this.state.formErrors;
         let emailValid = this.state.emailValid;
         let nameValid = this.state.nameValid;
@@ -153,7 +154,7 @@ export default class EmployeeProfile extends React.Component {
 
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
-            url: 'http://talentserviceprofile.azurewebsites.net/profile/profile/saveEmployerProfile',
+            url: 'http://localhost:60290/profile/profile/saveEmployerProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
