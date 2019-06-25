@@ -83,6 +83,7 @@ export default class AccountProfile extends React.Component {
     }
     //updates component's state without saving data
     updateWithoutSave(newValues) {
+       
         let newProfile = Object.assign({}, this.state.profileData, newValues)
         this.setState({
             profileData: newProfile
@@ -91,6 +92,7 @@ export default class AccountProfile extends React.Component {
 
     //updates component's state and saves data
     updateAndSaveData(newValues) {
+        debugger;
         let newProfile = Object.assign({}, this.state.profileData, newValues)
         this.setState({
             profileData: newProfile
@@ -102,6 +104,7 @@ export default class AccountProfile extends React.Component {
     }
 
     saveProfile() {
+        
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
             url: 'http://talentserviceprofile.azurewebsites.net/profile/profile/updateTalentProfile',
@@ -208,24 +211,7 @@ export default class AccountProfile extends React.Component {
                                                 updateProfileData={this.updateAndSaveData}
                                             />
                                         </FormItemWrapper>
-                                        <FormItemWrapper
-                                            title='Education'
-                                            tooltip='Add your educational background'
-                                        >
-                                            <Education
-                                                educationData={this.state.profileData.education}
-                                                updateProfileData={this.updateAndSaveData}
-                                            />
-                                        </FormItemWrapper>
-                                        <FormItemWrapper
-                                            title='Certification'
-                                            tooltip='List your certificates, honors and awards'
-                                        >
-                                            <Certificate
-                                                certificateData={this.state.profileData.certifications}
-                                                updateProfileData={this.updateAndSaveData}
-                                            />
-                                        </FormItemWrapper>
+                                       
                                         <FormItemWrapper
                                             title='Visa Status'
                                             tooltip='What is your current Visa/Citizenship status?'
@@ -258,29 +244,7 @@ export default class AccountProfile extends React.Component {
                                                 savePhotoUrl='http://talentserviceprofile.azurewebsites.net/profile/profile/updateProfilePhoto'
                                             />
                                         </FormItemWrapper>
-                                        <FormItemWrapper
-                                            title='Profile Video'
-                                            tooltip='Upload a brief self-introduction video'
-                                            hideSegment={true}
-                                        >
-                                            <VideoUpload
-                                                videoName={this.state.profileData.videoName}
-                                                updateProfileData={this.updateWithoutSave}
-                                                saveVideoUrl={'http://talentserviceprofile.azurewebsites.net/profile/profile/updateTalentVideo'}
-                                            />
-                                        </FormItemWrapper>
-                                        <FormItemWrapper
-                                            title='CV'
-                                            tooltip='Upload your CV. Accepted files are pdf, doc & docx)'
-                                            hideSegment={true}
-                                        >
-                                            <CVUpload
-                                                cvName={this.state.profileData.cvName}
-                                                cvUrl={this.state.profileData.cvUrl}
-                                                updateProfileData={this.updateWithoutSave}
-                                                saveCVUrl={'http://talentserviceprofile.azurewebsites.net/profile/profile/updateTalentCV'}
-                                            />
-                                        </FormItemWrapper>
+                                       
                                         <SelfIntroduction
                                             summary={this.state.profileData.summary}
                                             description={this.state.profileData.description}
