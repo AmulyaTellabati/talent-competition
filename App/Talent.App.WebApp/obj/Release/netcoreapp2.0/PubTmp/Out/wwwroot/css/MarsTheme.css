@@ -149,6 +149,41 @@
     margin: 0
 }
 
+/* File Upload button */
+.file-upload {
+    overflow: hidden;
+    position: relative;
+    height: 150px;
+    text-align: center;
+    margin-bottom: 20px;
+    width: 150px;
+    border-radius: 50%;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .file-upload [type='file'] {
+        cursor: inherit;
+        display: block;
+        font-size: 999px;
+        filter: alpha(opacity=0);
+        min-height: 100%;
+        min-width: 100%;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin-bottom: 20px;
+    }
+
+/* End of File Upload button*/
+
 .nav-secondary {
     margin-bottom: 2%
 }

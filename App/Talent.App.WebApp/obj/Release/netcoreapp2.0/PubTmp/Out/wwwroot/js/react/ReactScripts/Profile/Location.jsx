@@ -38,14 +38,13 @@ export class Address extends React.Component {
         this.saveContact=this.saveContact.bind(this)
     }
     openEdit() {
-       // const details = Object.assign({}, this.props.details)
+        const details = Object.assign({}, this.props.addressData)
         this.setState({
             showEditSection: true,
-            
+            address:details
         })
     }
     saveContact() {
-        debugger;
         this.props.saveProfileData({ address: this.state.address })
         this.closeEdit()
     }
@@ -86,15 +85,6 @@ export class Address extends React.Component {
     }
 
     renderEdit() {
-        
-           let number=this.props.addressData.number? this.props.addressData.number:this.state.address.number
-           let street=this.props.addressData.street?this.props.addressData.street:this.state.address.street
-           let suburb=this.props.addressData.suburb?this.props.addressData.suburb:this.state.address.suburb
-           let postcode=this.props.addressData.postCode?this.props.addressData.postCode:this.state.address.postCode
-           let City = this.props.addressData.city ? this.props.addressData.city : this.state.address.city
-           let Country = this.props.addressData.country ? this.props.addressData.country : this.state.address.country
-
-
         let citiesOptions = [];
         if (this.state.address.country != "" && this.state.address.country != null) {
             var popCities = Countries[this.state.address.country].map(x => <option key={x} value={x}> {x}</option>);           
@@ -107,7 +97,7 @@ export class Address extends React.Component {
                     inputType="text"
                     label="Number"
                     name="number"
-                    value={number}
+                    value={this.state.address.number}
                     controlFunc={this.handleChange}
                     maxLength={80} style={{ width: '25%', marginRight: 20 }}
                     placeholder="Unit:30-32"
@@ -117,7 +107,7 @@ export class Address extends React.Component {
                     inputType="text"
                     label="Street"
                     name="street"
-                    value={street}
+                        value={this.state.address.street}
                     controlFunc={this.handleChange}
                     maxLength={80} style={{ width: '40%', marginRight: 20 }}
                     placeholder="Enter your Street"
@@ -127,7 +117,7 @@ export class Address extends React.Component {
                     inputType="text"
                     label="Suburb"
                     name="suburb" style={{ width: '25%' }}
-                    value={suburb}
+                        value={this.state.address.suburb}
                     controlFunc={this.handleChange}
                     maxLength={80}
                     placeholder="Kogarah"
@@ -142,7 +132,7 @@ export class Address extends React.Component {
                             placeholder="Your Country"
                             selection
                             search
-                            value={Country}
+                            value={this.state.address.country}
                             name="country"
                             onChange={this.handleDropDownValueChange}
                         />
@@ -152,7 +142,7 @@ export class Address extends React.Component {
                         <select
                             className="ui dropdown"
                             placeholder="City"
-                            value={City}
+                            value={this.state.address.city}
                             onChange={this.handleChange}
                             name="city">
                             <option value="0"> Select a town or city</option>
@@ -163,7 +153,7 @@ export class Address extends React.Component {
                         inputType="text"
                         label="Post Code"
                         name="postCode"
-                        value={postcode}
+                        value={this.state.address.postCode}
                         controlFunc={this.handleChange}
                         style={{ width: '20%' }}
                         placeholder="Post Code" errorMessage="Please enter a valid postcode"

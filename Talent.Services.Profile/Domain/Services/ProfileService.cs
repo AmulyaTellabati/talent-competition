@@ -388,34 +388,73 @@ namespace Talent.Services.Profile.Domain.Services
         public async Task<bool> UpdateTalentPhoto(string talentId, IFormFile file)
         {
 
-            var profile = (await _userRepository.Get(x => x.Id == talentId)).SingleOrDefault();
-            string newFileName;
-           
-                var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
-                newFileName = Guid.NewGuid().ToString() + extension; //Create a new Name 
-                                                                  //for the file due to security reasons.
-               // var path = Path.Combine("https://imagesq.blob.core.windows.net/files/", newFileName);
+            var fileExtension = Path.GetExtension(file.FileName);
+            List<string> acceptedExtensions = new List<string> { ".jpg", ".png", ".gif", ".jpeg" };
 
-            var path=Path.Combine(Directory.GetFiles(Directory.GetCurrentDirectory(),"image"));
-            path = path + newFileName;
-                using (var bits = new FileStream(path, FileMode.Create,FileAccess.ReadWrite))
-                {
-                    await file.CopyToAsync(bits);
-                }
-
-                if (!string.IsNullOrWhiteSpace(newFileName))
-                {                
-                    profile.ProfilePhoto = newFileName;
-                    profile.ProfilePhotoUrl = path;
-                    
-                    await _userRepository.Update(profile);
-                    return true;
-                }
-            
-           
-
-            return true;
+            if (fileExtension != null && !acceptedExtensions.Contains(fileExtension.ToLower()))
+            {
+                return false;
             }
+
+            var profile = (await _userRepository.Get(x => x.Id == talentId)).SingleOrDefault();
+
+            if (profile == null)
+            {
+                return false;
+            }
+
+            
+
+            var newFileName = await _fileService.SaveFile(file, FileType.ProfilePhoto);
+
+            if (!string.IsNullOrWhiteSpace(newFileName))
+            {
+                var oldFileName = profile.ProfilePhoto;
+
+                if (!string.IsNullOrWhiteSpace(oldFileName))
+                {
+                    //await _fileService.DeleteFile(oldFileName, FileType.ProfilePhoto);
+                }
+
+                profile.ProfilePhoto = newFileName;
+                profile.ProfilePhotoUrl = await _fileService.GetFileURL(newFileName, FileType.ProfilePhoto);
+
+                await _userRepository.Update(profile);
+                return true;
+            }
+
+            return false;
+
+            //var profile = (await _userRepository.Get(x => x.Id == talentId)).SingleOrDefault();
+            //string newFileName;
+            //try
+            //{
+            //    var extension = "." + file.FileName.Split('.')[file.FileName.Split('.').Length - 1];
+            //    newFileName = Guid.NewGuid().ToString() + extension; //Create a new Name 
+            //                                                      //for the file due to security reasons.
+            //    var path = Path.Combine(Directory.GetCurrentDirectory(), "images", newFileName);
+
+            //    using (var bits = new FileStream(path, FileMode.Create))
+            //    {
+            //        await file.CopyToAsync(bits);
+            //    }
+
+            //    if (!string.IsNullOrWhiteSpace(newFileName))
+            //    {                
+            //        profile.ProfilePhoto = newFileName;
+            //        profile.ProfilePhotoUrl = path;
+
+            //        await _userRepository.Update(profile);
+            //        return true;
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    return false;
+            //}
+
+            //return true;
+        }
 
         public async Task<bool> AddTalentVideo(string talentId, IFormFile file)
         {

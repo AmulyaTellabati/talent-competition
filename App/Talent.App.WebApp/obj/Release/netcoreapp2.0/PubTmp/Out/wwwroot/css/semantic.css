@@ -19994,6 +19994,10 @@ ol.ui.horizontal.list,
     align-self: flex-end !important;
 }
 
+.bottomalign {
+    align-self: flex-end !important;
+}
+
 /* Stretched */
 
 .ui.stretched.grid > .row > .column,

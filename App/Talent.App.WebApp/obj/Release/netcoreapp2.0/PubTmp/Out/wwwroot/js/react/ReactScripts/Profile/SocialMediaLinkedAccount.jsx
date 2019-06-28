@@ -6,8 +6,8 @@ import { Popup } from 'semantic-ui-react';
 export default class SocialMediaLinkedAccount extends React.Component {
     constructor(props) {
         super(props);
-        const details = props.details ?
-            Object.assign({}, props.details)
+        const details = props.linkedAccounts ?
+            Object.assign({}, props.linkedAccounts)
             : {
                 linkedIn: "",
                 github: ""
@@ -34,7 +34,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
     }
 
     openEdit() {
-        const details = Object.assign({}, this.props.details)
+        const details = Object.assign({}, this.props.linkedAccounts)
         this.setState({
             showEditSection: true,
             linkedAccounts: details
@@ -42,10 +42,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
     }
 
     openURL(URL) {
-
         window.open(URL, '_blank');
-
-
     }
 
     closeEdit() {
@@ -80,8 +77,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
     }
 
     renderEdit() {
-        let linkedin = this.props.linkedAccounts ? this.props.linkedAccounts.linkedIn : this.state.linkedAccounts.linkedIn
-        let github = this.props.linkedAccounts ? this.props.linkedAccounts.github : this.state.linkedAccounts.github
+        
 
         return (
             <div className='ui sixteen wide column'>
@@ -89,7 +85,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
                     inputType="text"
                     label="LinkedIn"
                     name="linkedIn"
-                    value={linkedin}
+                    value={this.state.linkedAccounts.linkedIn}
                     controlFunc={this.handleChange}
                     maxLength={80}
                     placeholder="https://www.linkedin.com/"
@@ -99,7 +95,7 @@ export default class SocialMediaLinkedAccount extends React.Component {
                     inputType="text"
                     label="GitHub"
                     name="github"
-                    value={github}
+                    value={this.state.linkedAccounts.github}
                     controlFunc={this.handleChange}
                     maxLength={80}
                     placeholder="https://github.com/"

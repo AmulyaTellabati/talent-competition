@@ -86,8 +86,8 @@ export default class Experience extends React.Component {
         this.setState({
             experience: updatedExperience[index],
             editActive: true,
-            index:index,
-            showEditSection: true
+            index:index
+           // showEditSection: true
         } )
     }
 
@@ -105,7 +105,7 @@ export default class Experience extends React.Component {
 
         this.setState({
             showEditSection: false,
-
+            editActive: false
         })
     }
 
@@ -119,6 +119,84 @@ export default class Experience extends React.Component {
         let Expdetails = this.props.experienceData ? this.props.experienceData : this.state.experienceData
 
         return (<div className="row">
+            {
+
+                Expdetails.length !== 0 &&
+                Expdetails.map((d, index) => {
+                    if (this.state.editActive && d.company== this.state.experience.company) {
+                        return (
+                            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                                <div style={{ width: '49%' }}>
+                                    <Header style={{ margin: '10px 0' }} size="tiny">
+                                        Company
+          </Header>
+                                    <Input
+                                        placeholder="Company"
+                                        value={this.state.experience.company}
+                                        name="company"
+                                        fluid
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div style={{ width: '49%' }}>
+                                    <Header style={{ margin: '10px 0' }} size="tiny">
+                                        Position
+          </Header>
+                                    <Input
+                                        placeholder="Position"
+                                        value={this.state.experience.position}
+                                        name="position"
+                                        fluid
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div style={{ width: '49%' }}>
+                                    <Header style={{ margin: '10px 0' }} size="tiny">
+                                        Start Date
+          </Header>
+                                    <DateInput
+                                        name="start"
+                                        placeholder="Start Date"
+                                        value={this.state.experience.start}
+                                        iconPosition="left"
+                                        onChange={this.handleChange}
+                                        dateFormat="MM/DD/YYYY"
+                                    />
+                                </div>
+                                <div style={{ width: '49%' }}>
+                                    <Header style={{ margin: '10px 0' }} size="tiny">
+                                        End Date
+          </Header>
+                                    <DateInput
+                                        name="end"
+                                        placeholder="End Date"
+                                        value={this.state.experience.end}
+                                        iconPosition="left"
+                                        onChange={this.handleChange}
+                                        dateFormat="MM/DD/YYYY"
+                                    />
+                                </div>
+                                <div style={{ width: '100%' }}>
+                                    <Header style={{ margin: '10px 0' }} size="tiny">
+                                        Responsibilities
+          </Header>
+                                    <Input
+                                        name="responsibilities"
+                                        placeholder="Responsibilities"
+                                        value={this.state.experience.responsibilities}
+                                        fluid
+                                        onChange={this.handleChange}
+                                    />
+                                </div>
+                                <div style={{ marginTop: 20 }}>
+                                    <Button onClick={()=>this.saveExperience()} color="black">Save</Button>
+                                    <Button onClick={()=>this.closeEdit()}>Cancel</Button>
+                                </div>
+                            </div>
+                        )
+                    }
+                })
+            }
             <div className="ui sixteen wide column">
                 <Table padded>
                     <Table.Header>
@@ -140,6 +218,7 @@ export default class Experience extends React.Component {
 
                             Expdetails.length !== 0 &&
                             Expdetails.map((d, index) => {
+                                if (this.state.editActive == false || d.company != this.state.experience.company)
                                     return (
 
                                         <Table.Row key={index}>
@@ -157,6 +236,7 @@ export default class Experience extends React.Component {
                                 
                             })
                         }
+                       
                         
                     </Table.Body>
                 </Table>
