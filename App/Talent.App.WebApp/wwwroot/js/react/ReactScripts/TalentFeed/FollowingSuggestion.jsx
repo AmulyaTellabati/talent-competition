@@ -1,11 +1,17 @@
 ﻿import React from 'react';
-
+import { Card,Header } from 'semantic-ui-react';
 
 export default class FollowingSuggestion extends React.Component {
     render() {
         return (
-            <div className="content">
-                <div className="center aligned header">Follow Talent</div>
+            <Card className="content" style={{ margin: 0, alignSelf: 'flex-start' }}>
+                <Header
+                    size="medium"
+                    style={{ margin: '10px 0 0 0' }}
+                    textAlign="center"
+                >
+                    Follow Talent
+        </Header>
                 <div className="ui items following-suggestion">
                     <div className="item">
                         <div className="ui image">
@@ -26,7 +32,7 @@ export default class FollowingSuggestion extends React.Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Card>
         )
     }
 }

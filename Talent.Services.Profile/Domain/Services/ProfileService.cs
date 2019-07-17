@@ -483,8 +483,61 @@ namespace Talent.Services.Profile.Domain.Services
 
         public async Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(string employerOrJobId, bool forJob, int position, int increment)
         {
-            //Your code here;
-            throw new NotImplementedException();
+            Employer profile = (await _employerRepository.GetByIdAsync(employerOrJobId));
+
+
+            IEnumerable<User> users =_userRepository.Collection.Skip(position).Take(increment).AsEnumerable();
+
+            List<TalentSnapshotViewModel> result = new List<TalentSnapshotViewModel>();
+
+            //var user= new List<User>();
+
+            // var user =_userRepository.Collection.Skip(position).Take(increment).AsEnumerable();
+
+            //result.Add(BuildTalentSnapshot(user));
+
+            //return result;
+
+            foreach (var user in users)
+            {
+                result.Add(BuildTalentSnapshot(user));
+            }
+            return result;
+
+        }
+
+        private TalentSnapshotViewModel BuildTalentSnapshot(User user)
+        {
+            String name = String.Format("{0} {1}", user.FirstName, user.LastName);
+            List<string> skills = user.Skills.Select(x => x.Skill).ToList();
+            //string photo = await _documentService.GetFileURL(user.ProfilePhoto, FileType.ProfilePhoto);
+
+            UserExperience latest = user.Experience.OrderByDescending(x => x.End).FirstOrDefault();
+            String level, employment;
+            if (latest != null)
+            {
+                level = latest.Position;
+                employment = latest.Company;
+            }
+            else
+            {
+                level = "Unknown";
+                employment = "Unknown";
+            }
+
+            var result = new TalentSnapshotViewModel
+            {
+                CurrentEmployment = employment,
+                Id = user.Id,
+                Level = level,
+                Name = name,
+                PhotoId = user.ProfilePhotoUrl,
+                Skills = skills,
+                Summary = user.Summary,
+                Visa = user.VisaStatus
+            };
+
+            return result;
         }
 
         public async Task<IEnumerable<TalentSnapshotViewModel>> GetTalentSnapshotList(IEnumerable<string> ids)

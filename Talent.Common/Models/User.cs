@@ -50,7 +50,11 @@ namespace Talent.Common.Models
         public string UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
         public Login Login { get; set; }
-
+        public string UserType { get; set; }
+        public string Talent { get; set; }
+        public string PrimaryCV { get; set; }
+        public ICollection<TalentCVs> TalentCVs { get; set; }
+       // public string TalentCVs { get; set; }
         public User()
         {
             Languages = new List<UserLanguage>();
@@ -60,6 +64,7 @@ namespace Talent.Common.Models
             Experience = new List<UserExperience>();
             Address = new Address();
             Videos = new List<TalentVideo>();
+            TalentCVs = new List<TalentCVs>();
             LinkedAccounts = new LinkedAccounts();
         }
     }
@@ -94,6 +99,11 @@ namespace Talent.Common.Models
             LinkedIn = "";
             Github = "";
         }
+    }
+
+    public class TalentCVs {
+        public ICollection<string> Tags { get; set; }
+
     }
 
     public class JobSeekingStatus

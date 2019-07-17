@@ -8,6 +8,7 @@ namespace Talent.Common.Models
 {
     public class UserExperience
     {
+        public bool IsDeleted { get; set; }
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public String Id { get; set; }
